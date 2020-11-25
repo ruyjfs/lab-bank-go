@@ -1,0 +1,42 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Account {
+  id: ID!
+  document_number: Int!
+}
+
+type Transaction {
+  id: ID!
+  account: Account!
+  operationsType: OperationsType!
+}
+
+type OperationsType {
+  id: ID!
+  description: String!
+  account: Float!
+  eventDate: String!
+}
+
+type Query {
+  accounts: [Account]
+  transactions: [Transaction]
+  operationsTypes: [OperationsType]
+}
+
+type Mutation {
+  createAccount(input: NewAccount!): Transaction!
+  createTransaction(input: NewTransaction!): Transaction!
+}
+
+input NewAccount {
+  text: String!
+  userId: String!
+}
+
+input NewTransaction {
+  text: String!
+  userId: String!
+}
