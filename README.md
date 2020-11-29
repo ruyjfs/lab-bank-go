@@ -12,14 +12,25 @@ A example of bank transaction, made with GOlang, Gin Framework, Restful and Grap
 
 ## Endpoints
 
-| Endpoint      | Method | Action  |
-| ------------- | ------ | ------- |
-| /accounts     | GET    | Index   |
-| /accounts     | POST   | Store   |
-| /accounts     | PATCH  | Update  |
-| /accounts/:id | DELETE | Destroy |
-| /accounts/:id | GET    | Show    |
-| /transactions | GET    | Index   |
+| Endpoint              | Method | Action  |
+| --------------------- | ------ | ------- |
+| /graphql              | POST   |         |
+| /graphiql             | GET    |         |
+| /accounts             | GET    | Index   |
+| /accounts             | POST   | Store   |
+| /accounts             | PATCH  | Update  |
+| /accounts/:id         | DELETE | Destroy |
+| /accounts/:id         | GET    | Show    |
+| /transactions         | GET    | Index   |
+| /transactions         | POST   | Store   |
+| /transactions         | PATCH  | Update  |
+| /transactions/:id     | DELETE | Destroy |
+| /transactions/:id     | GET    | Show    |
+| /operations-types     | GET    | Index   |
+| /operations-types     | POST   | Store   |
+| /operations-types     | PATCH  | Update  |
+| /operations-types/:id | DELETE | Destroy |
+| /operations-types/:id | GET    | Show    |
 
 ## Insomnia
 
@@ -35,6 +46,7 @@ docker-compose up --build
 
 > Open on you best browser: http://localhost:8085 <br />
 > To see a database open adminer on: http://localhost:8086
+> Open GraphiQL on: http://localhost:8085/gaphiql
 > Configurations for connect on database see: [/docker/local.env](/docker/local.env)
 > IMPORTANT! If you not have a docker see: [Get Started - without docker](#Get-Stared-without-docker)
 

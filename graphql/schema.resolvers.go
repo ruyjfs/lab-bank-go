@@ -28,7 +28,7 @@ func (r *queryResolver) Account(ctx context.Context, id int) (*model.Account, er
 	log.Println(id)
 	db := config.Db()
 	var account *model.Account
-	db.First(&account, "1")
+	db.First(&account, id)
 	return account, nil
 }
 
