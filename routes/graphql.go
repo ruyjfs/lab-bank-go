@@ -7,10 +7,7 @@ import (
 	"github.com/ruyjfs/lab-bank-go/graphql/generated"
 )
 
-// Defining the Graphql handler
 func graphqlHandler() gin.HandlerFunc {
-	// NewExecutableSchema and Config are in the generated.go file
-	// Resolver is in the resolver.go file
 	h := handler.GraphQL(generated.NewExecutableSchema(generated.Config{Resolvers: &graphql.Resolver{}}))
 
 	return func(c *gin.Context) {
@@ -18,7 +15,6 @@ func graphqlHandler() gin.HandlerFunc {
 	}
 }
 
-// Defining the Playground handler
 func playgroundHandler() gin.HandlerFunc {
 	h := handler.Playground("GraphQL", "/graphql")
 
@@ -27,8 +23,33 @@ func playgroundHandler() gin.HandlerFunc {
 	}
 }
 
-func Graphql(r *gin.Engine) *gin.Engine {
-	r.POST("/graphql", graphqlHandler())
-	r.GET("/graphiql", playgroundHandler())
-	return r
+func Graphql(router *gin.Engine) *gin.Engine {
+
+	// srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graphql.Resolver{}}))
+	// router.GET("/graphiql", playground.Handler("GraphQL playground", "/graphql"))
+	// router.POST("/graphql", srv)
+	// log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
+	// log.Fatal(http.ListenAndServe(":"+port, nil))
+
+	router.POST("/graphql", graphqlHandler())
+	router.GET("/graphiql", playgroundHandler())
+
+	return router
 }
+
+// const defaultPort = "8080"
+
+// func main() {
+// 	port := os.Getenv("PORT")
+// 	if port == "" {
+// 		port = defaultPort
+// 	}
+
+// 	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &graphql.Resolver{}}))
+
+// 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
+// 	http.Handle("/query", srv)
+
+// 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
+// 	log.Fatal(http.ListenAndServe(":"+port, nil))
+// }

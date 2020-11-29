@@ -1,0 +1,217 @@
+_type: export
+__export_format: 4
+__export_date: 2020-11-29T00:08:28.073Z
+__export_source: insomnia.desktop.app:v2020.4.2
+resources:
+  - _id: req_4576c6d85e664668a8f1c5245199e564
+    parentId: fld_e32d8c2225e74d949c76e27e63e03a15
+    modified: 1606607996359
+    created: 1606600546914
+    url: "{{ URL }}/accounts"
+    name: index
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1606522480566.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_e32d8c2225e74d949c76e27e63e03a15
+    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    modified: 1606608024730
+    created: 1606607983976
+    name: accounts
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1606608017965
+    _type: request_group
+  - _id: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    parentId: null
+    modified: 1606265955958
+    created: 1606265955958
+    name: GO - Bank
+    description: ""
+    scope: null
+    _type: workspace
+  - _id: req_fb1ad72fe01f41798d234f53d515164c
+    parentId: fld_e32d8c2225e74d949c76e27e63e03a15
+    modified: 1606607991444
+    created: 1606269500825
+    url: "{{ URL }}/accounts/123456111"
+    name: show
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1606522480516.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_896ca386f54e400c9367463429742e03
+    parentId: fld_e32d8c2225e74d949c76e27e63e03a15
+    modified: 1606608002995
+    created: 1606265970087
+    url: "{{ URL }}/account"
+    name: account
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"document_number": 123456111,
+        	"test": "aaaaaaaa"
+        }
+    parameters:
+      - name: document_number
+        value: "123456"
+        description: ""
+        id: pair_db264eabffcb47c1821d7b65d45a86a8
+        disabled: true
+      - name: DocumentNumber
+        value: "123456"
+        description: ""
+        id: pair_1c838126008c4f55ab23cc8c05e11155
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_147783d79651409980069b974db41213
+    authentication: {}
+    metaSortKey: -1606522480466.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d18d4c36691b4388bb4bcdb05691dd9e
+    parentId: fld_3cd1c3b12762408d87568f6e7e519c4c
+    modified: 1606608022158
+    created: 1606269719872
+    url: "{{ URL }}/transactions"
+    name: transactions
+    description: ""
+    method: POST
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1606093577891
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_3cd1c3b12762408d87568f6e7e519c4c
+    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    modified: 1606608017915
+    created: 1606608017915
+    name: transactions
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1606608017915
+    _type: request_group
+  - _id: req_6d30eb5af4a048749212fa89a57f1192
+    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    modified: 1606524803788
+    created: 1606271491635
+    url: "{{ URL }}/graphql"
+    name: graphql
+    description: ""
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query {\n   transactions {\n    id,\n    account
+        {\n      document_number\n    }\n    operationsType
+        {\n      description\n    }\n  }\n}"}'
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_d8c2da98cb0d4ea69324a8ad63a1815d
+    authentication: {}
+    metaSortKey: -1606093577841
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_a44e5cbee4e03957238f2b7e476ec8bd84d797a4
+    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    modified: 1606265956055
+    created: 1606265956055
+    name: Base Environment
+    data: {}
+    dataPropertyOrder: null
+    color: null
+    isPrivate: false
+    metaSortKey: 1606265956055
+    _type: environment
+  - _id: jar_a44e5cbee4e03957238f2b7e476ec8bd84d797a4
+    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    modified: 1606265956060
+    created: 1606265956060
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_0023e24300dd4a07aa1a1869a8a4fded
+    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    modified: 1606265955969
+    created: 1606265955969
+    fileName: GO - Bank
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: env_6de08a54e5c44a4abf2feeca98f4357b
+    parentId: env_a44e5cbee4e03957238f2b7e476ec8bd84d797a4
+    modified: 1606608280918
+    created: 1606265983484
+    name: local
+    data:
+      URL: localhost:8080
+    dataPropertyOrder:
+      "&":
+        - URL
+    color: null
+    isPrivate: false
+    metaSortKey: 1
+    _type: environment
+  - _id: env_99d83d7ed4e140088a8f040caa440519
+    parentId: env_a44e5cbee4e03957238f2b7e476ec8bd84d797a4
+    modified: 1606608280915
+    created: 1606608253505
+    name: docker
+    data:
+      URL: localhost:8085
+    dataPropertyOrder:
+      "&":
+        - URL
+    color: null
+    isPrivate: false
+    metaSortKey: 0
+    _type: environment

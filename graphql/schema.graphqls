@@ -4,39 +4,35 @@
 
 type Account {
   id: ID!
-  document_number: Int!
-}
-
-type Transaction {
-  id: ID!
-  account: Account!
-  operationsType: OperationsType!
+  documentNumber: Int!
 }
 
 type OperationsType {
   id: ID!
   description: String!
-  account: Float!
+}
+
+type Transaction {
+  id: ID!
+  accountId: Int!
+  operationsTypeId: Int!
+  amount: Float!
   eventDate: String!
+  account: Account!
+  operationsType: OperationsType!
 }
 
 type Query {
   accounts: [Account]
+  account (id: Int!): Account
   transactions: [Transaction]
-  operationsTypes: [OperationsType]
-}
-
-type Mutation {
-  createAccount(input: NewAccount!): Transaction!
-  createTransaction(input: NewTransaction!): Transaction!
+  operationsTypes: [OperationsType!]!
 }
 
 input NewAccount {
-  text: String!
-  userId: String!
+  documentNumber: Int!
 }
 
-input NewTransaction {
-  text: String!
-  userId: String!
+type Mutation {
+  createAccount(input: NewAccount!): Account!
 }

@@ -6,29 +6,44 @@ package graphql
 import (
 	"context"
 	"fmt"
+	"log"
 
+	"github.com/ruyjfs/lab-bank-go/config"
 	"github.com/ruyjfs/lab-bank-go/graphql/generated"
 	"github.com/ruyjfs/lab-bank-go/graphql/model"
 )
 
-func (r *mutationResolver) CreateAccount(ctx context.Context, input model.NewAccount) (*model.Transaction, error) {
-	panic(fmt.Errorf("not implemented"))
-}
-
-func (r *mutationResolver) CreateTransaction(ctx context.Context, input model.NewTransaction) (*model.Transaction, error) {
+func (r *mutationResolver) CreateAccount(ctx context.Context, input model.NewAccount) (*model.Account, error) {
 	panic(fmt.Errorf("not implemented"))
 }
 
 func (r *queryResolver) Accounts(ctx context.Context) ([]*model.Account, error) {
-	panic(fmt.Errorf("not implemented"))
+	db := config.Db()
+	var accounts []*model.Account
+	db.Find(&accounts)
+	return accounts, nil
+}
+
+func (r *queryResolver) Account(ctx context.Context, id int) (*model.Account, error) {
+	log.Println(id)
+	db := config.Db()
+	var account *model.Account
+	db.First(&account, "1")
+	return account, nil
 }
 
 func (r *queryResolver) Transactions(ctx context.Context) ([]*model.Transaction, error) {
-	panic(fmt.Errorf("not implemented"))
+	db := config.Db()
+	var transactions []*model.Transaction
+	db.Joins("Account").Joins("OperationsType").Find(&transactions)
+	return transactions, nil
 }
 
 func (r *queryResolver) OperationsTypes(ctx context.Context) ([]*model.OperationsType, error) {
-	panic(fmt.Errorf("not implemented"))
+	db := config.Db()
+	var operationsTypes []*model.OperationsType
+	db.Find(&operationsTypes)
+	return operationsTypes, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.
@@ -39,16 +54,3 @@ func (r *Resolver) Query() generated.QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
-
-// !!! WARNING !!!
-// The code below was going to be deleted when updating resolvers. It has been copied here so you have
-// one last chance to move it out of harms way if you want. There are two reasons this happens:
-//  - When renaming or deleting a resolver the old code will be put in here. You can safely delete
-//    it when you're done.
-//  - You have helper methods in this file. Move them out to keep these resolver files clean.
-// func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
-// 	panic(fmt.Errorf("not implemented"))
-// }
-// func (r *queryResolver) Transactions(ctx context.Context) ([]*model.Transaction, error) {
-// 	panic(fmt.Errorf("not implemented"))
-// }

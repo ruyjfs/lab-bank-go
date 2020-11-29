@@ -4,28 +4,24 @@ package model
 
 type Account struct {
 	ID             string `json:"id"`
-	DocumentNumber int    `json:"document_number"`
+	DocumentNumber int    `json:"documentNumber"`
 }
 
 type NewAccount struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
-}
-
-type NewTransaction struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
+	DocumentNumber int `json:"documentNumber"`
 }
 
 type OperationsType struct {
-	ID          string  `json:"id"`
-	Description string  `json:"description"`
-	Account     float64 `json:"account"`
-	EventDate   string  `json:"eventDate"`
+	ID          string `json:"id"`
+	Description string `json:"description"`
 }
 
 type Transaction struct {
-	ID             string          `json:"id"`
-	Account        *Account        `json:"account"`
-	OperationsType *OperationsType `json:"operationsType"`
+	ID               string          `json:"id"`
+	AccountID        int             `json:"accountId"`
+	OperationsTypeID int             `json:"operationsTypeId"`
+	Amount           float64         `json:"amount"`
+	EventDate        string          `json:"eventDate"`
+	Account          *Account        `json:"account"`
+	OperationsType   *OperationsType `json:"operationsType"`
 }

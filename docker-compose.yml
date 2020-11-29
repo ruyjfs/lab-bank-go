@@ -1,52 +1,47 @@
 version: "3.5"
 services: 
-  service-labbankgo-api:
+  labbankgo-api-service:
     container_name: "labbankgo-api"
     image: "ruyjfs/go"
     build: docker/.
     working_dir: /app
     volumes:
       - .:/app
-    # command: sh -c '~/go/bin/gin'
-    command: sh -c 'go run main.go'
+    env_file: ./docker/local.env
+    entrypoint: ["sh", "./docker/entrypoint.sh"]
+    command: sh -c 'gin --port=8080'
     ports:
-      - "8080:8080"
+      - "8085:8080"
     restart: always
     tty: true
-    # links:
-    #   - service-labbankgo-db
-    # depends_on:
-    #   - service-labbankgo-db
-
-  # service-labbankgo-db:
-  #   image: postgres:alpine
-  #   container_name: labbankgo-db
-  #   environment:
-  #     POSTGRES_DB: labbankgo-db
-  #     POSTGRES_USER: labbankgo-usr
-  #     POSTGRES_PASSWORD: labbankgo-psw
-  #   ports:
-  #     - 5432:5432
-  #   tty: true
-  #   restart: always
-
-  # db-service:
-  #   # healthcheck:
-  #   #   test: ['CMD-SHELL', 'pg_isready -U usr_sli -d usr_sli || exit 1']
-  #   #   interval: 10s
-  #   #   timeout: 5s
-  #   #   retries: 3
-  #   image: postgres:11.5-alpine
-  #   container_name: sli-db
-  #   environment:
-  #     - POSTGRES_DB=db_sli
-  #     - POSTGRES_USER=usr_sli
-  #     - POSTGRES_PASSWORD=psw_sli
-  #     - POSTGRES_DB_TEST=db_sli_test
-  #   ports:
-  #     - 5401:5432
-  #   expose:
-  #     - 5432
-  #   volumes:
-  #     - ./database/docker-data/postgres:/var/lib/postgresql/data
-  #     - ./database/scripts:/docker-entrypoint-initdb.d
+    links:
+      - labbankgo-db-service
+    depends_on:
+      - labbankgo-db-service
+  labbankgo-db-service:
+    container_name: labbankgo-db
+    image: postgres:alpine
+    env_file: ./docker/local.env
+    # healthcheck:
+    #   test: ['CMD-SHELL', 'pg_isready -U labbankgo-usr -d labbankgo-db || exit 1']
+    #   interval: 10s
+    #   timeout: 5s
+      # retries: 3
+    volumes:
+      - ./docker/database/postgres/data:/var/lib/postgresql/data
+      - ./docker/database/postgres/scripts:/docker-entrypoint-initdb.d
+    tty: true
+    restart: always
+  labbankgo-adminer-service:
+    container_name: labbankgo-adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8086:8080
+    environment:
+      ADMINER_DESIGN: "nette"
+      ADMINER_DEFAULT_SERVER: "${DB_HOST}"
+    links:
+      - labbankgo-db-service
+    depends_on:
+      - labbankgo-db-service
