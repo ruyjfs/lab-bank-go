@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/ruyjfs/lab-bank-go/database"
-	"github.com/ruyjfs/lab-bank-go/routes"
+	"github.com/ruyjfs/lab-bank-go/src/database"
+	"github.com/ruyjfs/lab-bank-go/src/routes"
 )
 
 func main() {

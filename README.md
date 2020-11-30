@@ -5,6 +5,7 @@ A example of bank transaction, made with GOlang, Gin Framework, Restful and Grap
 - [Endpoints](#Endpoints)
 - [Insomnia](#Insomnia)
 - [Get Started](#Get-Started)
+- [Get Started - without docker](##Get-Stared-without-docker)
 - [Step By Step](#Step-By-Step)
 - [Commands](#Commands)
 - [Technologies](#Technologies)
@@ -45,35 +46,19 @@ docker-compose up --build
 ```
 
 > Open on you best browser: http://localhost:8085 <br />
-> GraphQL Playground: http://localhost:8085/gaphiql
-> To see a database open adminer on: http://localhost:8086
+> GraphQL Playground: http://localhost:8085/gaphiql<br />
+> To see a database open adminer on: http://localhost:8086 <br />
 > Configurations for connect on database see: [/docker/local.env](/docker/local.env)
 > IMPORTANT! If you not have a docker see: [Get Started - without docker](#Get-Stared-without-docker)
 
 ## Structure
 
-```bash
-
-|--database - (database configuration)<br />
-|--graphql - (files for graphql)<br />
-|--|--generated (this file is generated automatic, DO NOT EDIT)<br />
-|--|--model (this file is generated automatic, DO NOT EDIT)<br />
-|--routes (files with routes)<br />
-|--controllers (RESTfull methods)<br />
-|--services (with business rules and intermediate a database)<br />
-
 ```
-
-## Tasks
-
-- [ ] Accounts
-- [ ] Operations types
-- [ ] Transactions
-
-<!-- ├── go.mod
-├── go.sum
-├── gqlgen.yml               - The gqlgen config file, knobs for controlling the generated code.
-├── graph
+├── config - (configuration)
+├── controllers (RESTfull methods)
+├── core (Base methos for controllers, models and services)
+├── database - (database configuration, migrate and seed data)
+├── graphql
 │   ├── generated            - A package that only contains the generated runtime
 │   │   └── generated.go
 │   ├── model                - A package for all your graph models, generated or otherwise
@@ -81,7 +66,14 @@ docker-compose up --build
 │   ├── resolver.go          - The root graph resolver type. This file wont get regenerated
 │   ├── schema.graphqls      - Some schema. You can split the schema into as many graphql files as you like
 │   └── schema.resolvers.go  - the resolver implementation for schema.graphql
-└── server.go                - The entry point to your app. Customize it however you see fit -->
+├── models (ORM models based on Database tables)
+├── routes (files with routes)
+├── services (with business rules and intermediate a database)controlling the generated code.
+├── go.mod
+├── go.sum
+├── gqlgen.yml               - The gqlgen config file, knobs for
+└── main.go                  - The entry point to your app. Customize it however you see fit
+```
 
 ## Commands
 
@@ -104,6 +96,14 @@ gqlgen generate
 ```
 
 > Out of docker
+
+#### Get Stared without docker
+
+> A Database PostgreSQL is needed, configurations for it in docker/local.env
+
+```bash
+gin --port=8080 #or ~/go/bin/gin --port=8080
+```
 
 ## Step By Step (for create this project)
 
@@ -178,15 +178,7 @@ Default start project
 go run main.go
 ```
 
-## Get Stared without docker
-
-> A Database PostgreSQL is needed, configurations for it in in docker/local.env!
-
-```bash
-~/go/bin/gin
-```
-
-> Open on you best browser: http://localhost:8080
+> Open on you best browser: http://localhost:8085
 
 ## Technologies:
 
