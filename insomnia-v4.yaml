@@ -1,13 +1,98 @@
 _type: export
 __export_format: 4
-__export_date: 2020-11-29T00:08:28.073Z
+__export_date: 2020-11-30T06:39:07.580Z
 __export_source: insomnia.desktop.app:v2020.4.2
 resources:
+  - _id: req_838b97ff2ee34c0f82fcb27e2e829ac1
+    parentId: fld_b2932b396dc246d5b9ad9eb0ab406f74
+    modified: 1606710846316
+    created: 1606686593983
+    url: "{{ URL }}{{ GRAPHQL }}"
+    name: account
+    description: ""
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query {\n  account (id: 1)
+        {\n    id,\n    documentNumber\n  },\n}"}'
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_d8c2da98cb0d4ea69324a8ad63a1815d
+    authentication: {}
+    metaSortKey: -1606565249290.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_b2932b396dc246d5b9ad9eb0ab406f74
+    parentId: fld_f2399efc1dcc4641bdd87f9362710aa2
+    modified: 1606686565685
+    created: 1606686565685
+    name: accounts
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1606686565685
+    _type: request_group
+  - _id: fld_f2399efc1dcc4641bdd87f9362710aa2
+    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    modified: 1606686546684
+    created: 1606686546684
+    name: graphql
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1606686546684
+    _type: request_group
+  - _id: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    parentId: null
+    modified: 1606265955958
+    created: 1606265955958
+    name: GO - Bank
+    description: ""
+    scope: null
+    _type: workspace
+  - _id: req_6d30eb5af4a048749212fa89a57f1192
+    parentId: fld_f2399efc1dcc4641bdd87f9362710aa2
+    modified: 1606711905212
+    created: 1606271491635
+    url: "{{ URL }}{{ GRAPHQL }}"
+    name: all
+    description: ""
+    method: POST
+    body:
+      mimeType: application/graphql
+      text: '{"query":"query {\n  accounts
+        {\n    id,\n    documentNumber\n  },\n  transactions{\n    id,\n    amount,\n    account
+        {\n      documentNumber\n    },\n    operationsType
+        {\n      description\n    },\n  }\n  operationsTypes
+        {\n    id,\n    description\n  }\n}"}'
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_d8c2da98cb0d4ea69324a8ad63a1815d
+    authentication: {}
+    metaSortKey: -1606608018015
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
   - _id: req_4576c6d85e664668a8f1c5245199e564
     parentId: fld_e32d8c2225e74d949c76e27e63e03a15
-    modified: 1606607996359
+    modified: 1606699375592
     created: 1606600546914
-    url: "{{ URL }}/accounts"
+    url: "{{ URL }}{{ VERSION }}/accounts"
     name: index
     description: ""
     method: GET
@@ -34,19 +119,11 @@ resources:
     environmentPropertyOrder: null
     metaSortKey: -1606608017965
     _type: request_group
-  - _id: wrk_4fbe38806c4c42b98f9bdef9bc386133
-    parentId: null
-    modified: 1606265955958
-    created: 1606265955958
-    name: GO - Bank
-    description: ""
-    scope: null
-    _type: workspace
   - _id: req_fb1ad72fe01f41798d234f53d515164c
     parentId: fld_e32d8c2225e74d949c76e27e63e03a15
-    modified: 1606607991444
+    modified: 1606699378363
     created: 1606269500825
-    url: "{{ URL }}/accounts/123456111"
+    url: "{{ URL }}{{ VERSION }}/accounts/1"
     name: show
     description: ""
     method: GET
@@ -65,18 +142,17 @@ resources:
     _type: request
   - _id: req_896ca386f54e400c9367463429742e03
     parentId: fld_e32d8c2225e74d949c76e27e63e03a15
-    modified: 1606608002995
+    modified: 1606712891477
     created: 1606265970087
-    url: "{{ URL }}/account"
-    name: account
+    url: "{{ URL }}{{ VERSION }}/accounts"
+    name: store
     description: ""
     method: POST
     body:
       mimeType: application/json
       text: |-
         {
-        	"document_number": 123456111,
-        	"test": "aaaaaaaa"
+        	"documentNumber": 1234568
         }
     parameters:
       - name: document_number
@@ -102,19 +178,37 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: req_d18d4c36691b4388bb4bcdb05691dd9e
-    parentId: fld_3cd1c3b12762408d87568f6e7e519c4c
-    modified: 1606608022158
-    created: 1606269719872
-    url: "{{ URL }}/transactions"
-    name: transactions
+  - _id: req_88b11ee8208a41d0b98ee0c0482a29ab
+    parentId: fld_e32d8c2225e74d949c76e27e63e03a15
+    modified: 1606699383894
+    created: 1606619138741
+    url: "{{ URL }}{{ VERSION }}/accounts"
+    name: update
     description: ""
-    method: POST
-    body: {}
-    parameters: []
-    headers: []
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id": 4,
+        	"documentNumber": 12222
+        }
+    parameters:
+      - name: document_number
+        value: "123456"
+        description: ""
+        id: pair_db264eabffcb47c1821d7b65d45a86a8
+        disabled: true
+      - name: DocumentNumber
+        value: "123456"
+        description: ""
+        id: pair_1c838126008c4f55ab23cc8c05e11155
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_147783d79651409980069b974db41213
     authentication: {}
-    metaSortKey: -1606093577891
+    metaSortKey: -1606415254822.4375
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -123,36 +217,386 @@ resources:
     settingRebuildPath: true
     settingFollowRedirects: global
     _type: request
-  - _id: fld_3cd1c3b12762408d87568f6e7e519c4c
+  - _id: req_b592442780e942d68d4947ec4de784fb
+    parentId: fld_e32d8c2225e74d949c76e27e63e03a15
+    modified: 1606699387854
+    created: 1606617205298
+    url: "{{ URL }}{{ VERSION }}/accounts/3"
+    name: destroy
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: ""
+    parameters:
+      - name: document_number
+        value: "123456"
+        description: ""
+        id: pair_db264eabffcb47c1821d7b65d45a86a8
+        disabled: true
+      - name: DocumentNumber
+        value: "123456"
+        description: ""
+        id: pair_1c838126008c4f55ab23cc8c05e11155
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_147783d79651409980069b974db41213
+    authentication: {}
+    metaSortKey: -1606308029178.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f15af7d7c12e4c69a320d129da88dd23
+    parentId: fld_f8a7064ab26943ea8d12a6395624fe2b
+    modified: 1606699313743
+    created: 1606675463953
+    url: "{{ URL }}{{ VERSION }}/transactions"
+    name: index
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1606522480566.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_f8a7064ab26943ea8d12a6395624fe2b
     parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
-    modified: 1606608017915
-    created: 1606608017915
+    modified: 1606675463932
+    created: 1606675463932
     name: transactions
     description: ""
     environment: {}
     environmentPropertyOrder: null
-    metaSortKey: -1606608017915
+    metaSortKey: -1598048841178.5
     _type: request_group
-  - _id: req_6d30eb5af4a048749212fa89a57f1192
-    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
-    modified: 1606524803788
-    created: 1606271491635
-    url: "{{ URL }}/graphql"
-    name: graphql
+  - _id: req_e2d52fca866e4b76bfb5ac541a191bbc
+    parentId: fld_f8a7064ab26943ea8d12a6395624fe2b
+    modified: 1606699325426
+    created: 1606675463949
+    url: "{{ URL }}{{ VERSION }}/transactions/1"
+    name: show
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1606522480516.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e6701d69838f4248905625b31815e3ab
+    parentId: fld_f8a7064ab26943ea8d12a6395624fe2b
+    modified: 1606712601675
+    created: 1606675463941
+    url: "{{ URL }}{{ VERSION }}/transactions"
+    name: store
     description: ""
     method: POST
     body:
-      mimeType: application/graphql
-      text: '{"query":"query {\n   transactions {\n    id,\n    account
-        {\n      document_number\n    }\n    operationsType
-        {\n      description\n    }\n  }\n}"}'
-    parameters: []
+      mimeType: application/json
+      text: |-
+        {
+        	"accountID": 1,
+        	"operationsTypeID": 3,
+        	"amount": 12.10
+        }
+    parameters:
+      - name: document_number
+        value: "123456"
+        description: ""
+        id: pair_db264eabffcb47c1821d7b65d45a86a8
+        disabled: true
+      - name: DocumentNumber
+        value: "123456"
+        description: ""
+        id: pair_1c838126008c4f55ab23cc8c05e11155
     headers:
       - name: Content-Type
         value: application/json
-        id: pair_d8c2da98cb0d4ea69324a8ad63a1815d
+        id: pair_147783d79651409980069b974db41213
     authentication: {}
-    metaSortKey: -1606093577841
+    metaSortKey: -1606522480466.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6ddb59f03f474263a17d415de5cbe79a
+    parentId: fld_f8a7064ab26943ea8d12a6395624fe2b
+    modified: 1606699337244
+    created: 1606675463960
+    url: "{{ URL }}{{ VERSION }}/transactions"
+    name: update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id": 1,
+        	"accountId": 1,
+        	"operationsTypeId": 1,
+        	"amount": 12.10
+        }
+    parameters:
+      - name: document_number
+        value: "123456"
+        description: ""
+        id: pair_db264eabffcb47c1821d7b65d45a86a8
+        disabled: true
+      - name: DocumentNumber
+        value: "123456"
+        description: ""
+        id: pair_1c838126008c4f55ab23cc8c05e11155
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_147783d79651409980069b974db41213
+    authentication: {}
+    metaSortKey: -1606415254822.4375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e8c48636f2d744528beda177901d2168
+    parentId: fld_f8a7064ab26943ea8d12a6395624fe2b
+    modified: 1606699341535
+    created: 1606675463956
+    url: "{{ URL }}{{ VERSION }}/transactions/3"
+    name: destroy
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: ""
+    parameters:
+      - name: document_number
+        value: "123456"
+        description: ""
+        id: pair_db264eabffcb47c1821d7b65d45a86a8
+        disabled: true
+      - name: DocumentNumber
+        value: "123456"
+        description: ""
+        id: pair_1c838126008c4f55ab23cc8c05e11155
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_147783d79651409980069b974db41213
+    authentication: {}
+    metaSortKey: -1606308029178.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_e679a93408b84f3aa8a8c9629a528b46
+    parentId: fld_bdd5e47b9b1f4da49da1a40fcdd5d74d
+    modified: 1606699354584
+    created: 1606675053547
+    url: "{{ URL }}{{ VERSION }}/operations-types"
+    name: index
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1606522480566.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_bdd5e47b9b1f4da49da1a40fcdd5d74d
+    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    modified: 1606702314373
+    created: 1606675053534
+    name: operations-types
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1598048841128.5
+    _type: request_group
+  - _id: req_38347882d09040a196d1b9da414e774d
+    parentId: fld_bdd5e47b9b1f4da49da1a40fcdd5d74d
+    modified: 1606710300981
+    created: 1606675053543
+    url: "{{ URL }}{{ VERSION }}/operations-types/1"
+    name: show
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1606522480516.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_38ff53461dc948beb7963c4f334347c7
+    parentId: fld_bdd5e47b9b1f4da49da1a40fcdd5d74d
+    modified: 1606712538520
+    created: 1606675053538
+    url: "{{ URL }}{{ VERSION }}/operations-types"
+    name: store
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"description": "TESTE2"
+        }
+    parameters:
+      - name: document_number
+        value: "123456"
+        description: ""
+        id: pair_db264eabffcb47c1821d7b65d45a86a8
+        disabled: true
+      - name: DocumentNumber
+        value: "123456"
+        description: ""
+        id: pair_1c838126008c4f55ab23cc8c05e11155
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_147783d79651409980069b974db41213
+    authentication: {}
+    metaSortKey: -1606522480466.25
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_cb7e44a58dcb4e23beffa4b4e1a5da36
+    parentId: fld_bdd5e47b9b1f4da49da1a40fcdd5d74d
+    modified: 1606699364056
+    created: 1606675053556
+    url: "{{ URL }}{{ VERSION }}/operations-types"
+    name: update
+    description: ""
+    method: PATCH
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"id": 4,
+        	"documentNumber": 12222
+        }
+    parameters:
+      - name: document_number
+        value: "123456"
+        description: ""
+        id: pair_db264eabffcb47c1821d7b65d45a86a8
+        disabled: true
+      - name: DocumentNumber
+        value: "123456"
+        description: ""
+        id: pair_1c838126008c4f55ab23cc8c05e11155
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_147783d79651409980069b974db41213
+    authentication: {}
+    metaSortKey: -1606415254822.4375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_c15d75330932417c91f2941dc4bac860
+    parentId: fld_bdd5e47b9b1f4da49da1a40fcdd5d74d
+    modified: 1606699367854
+    created: 1606675053551
+    url: "{{ URL }}{{ VERSION }}/operations-types/35"
+    name: destroy
+    description: ""
+    method: DELETE
+    body:
+      mimeType: application/json
+      text: ""
+    parameters:
+      - name: document_number
+        value: "123456"
+        description: ""
+        id: pair_db264eabffcb47c1821d7b65d45a86a8
+        disabled: true
+      - name: DocumentNumber
+        value: "123456"
+        description: ""
+        id: pair_1c838126008c4f55ab23cc8c05e11155
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_147783d79651409980069b974db41213
+    authentication: {}
+    metaSortKey: -1606308029178.625
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_0c4458a3f3594553870764156a42642e
+    parentId: wrk_4fbe38806c4c42b98f9bdef9bc386133
+    modified: 1606711946604
+    created: 1606711917275
+    url: "{{ URL }}"
+    name: index
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1598048841078.5
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
@@ -189,28 +633,36 @@ resources:
     _type: api_spec
   - _id: env_6de08a54e5c44a4abf2feeca98f4357b
     parentId: env_a44e5cbee4e03957238f2b7e476ec8bd84d797a4
-    modified: 1606608280918
+    modified: 1606699444764
     created: 1606265983484
     name: local
     data:
       URL: localhost:8080
+      VERSION: /api/v1
+      GRAPHQL: /graphql
     dataPropertyOrder:
       "&":
         - URL
+        - VERSION
+        - GRAPHQL
     color: null
     isPrivate: false
     metaSortKey: 1
     _type: environment
   - _id: env_99d83d7ed4e140088a8f040caa440519
     parentId: env_a44e5cbee4e03957238f2b7e476ec8bd84d797a4
-    modified: 1606608280915
+    modified: 1606699430696
     created: 1606608253505
     name: docker
     data:
       URL: localhost:8085
+      VERSION: /api/v1
+      GRAPHQL: /graphql
     dataPropertyOrder:
       "&":
         - URL
+        - VERSION
+        - GRAPHQL
     color: null
     isPrivate: false
     metaSortKey: 0

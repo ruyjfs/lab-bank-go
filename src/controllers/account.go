@@ -5,6 +5,7 @@ import (
 	"github.com/ruyjfs/lab-bank-go/src/config"
 	"github.com/ruyjfs/lab-bank-go/src/core"
 	"github.com/ruyjfs/lab-bank-go/src/models"
+	"github.com/ruyjfs/lab-bank-go/src/services"
 )
 
 type Account struct {
@@ -12,9 +13,10 @@ type Account struct {
 }
 
 func (a *Account) Index(c *gin.Context) {
-	var accounts []models.Account
-	result := config.Db().Find(&accounts)
-	a.Json(c, result, accounts)
+	// var accounts []models.Account
+	// result := config.Db().Find(&accounts)
+	// a.Json(c, result, accounts)
+	services.Find()
 }
 
 func (a *Account) Store(c *gin.Context) {
