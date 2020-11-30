@@ -6,6 +6,7 @@ A example of bank transaction, made with GOlang, Gin Framework, Restful and Grap
 - [Insomnia](#Insomnia)
 - [Get Started](#Get-Started)
 - [Get Started - without docker](##Get-Stared-without-docker)
+- [Unity Test and Test Integration](##Unity-Test-and-Test-Integration)
 - [Step By Step](#Step-By-Step)
 - [Commands](#Commands)
 - [Technologies](#Technologies)
@@ -103,6 +104,19 @@ gqlgen generate
 
 ```bash
 gin --port=8080 #or ~/go/bin/gin --port=8080
+```
+
+## Unity Test and Test Integration
+
+```bash
+go test -v ./src/tests/
+```
+
+With code coverage
+
+```bash
+go test -cover -coverprofile=c.out ./src/tests/
+go tool cover -html=c.out -o coverage.html
 ```
 
 ## Step By Step (for create this project)

@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Run() {
+func SetupRouter() *gin.Engine {
 	r := gin.Default()
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
@@ -18,5 +18,12 @@ func Run() {
 
 	V1(r)
 	Graphql(r)
+	return r
+}
+
+func Run() *gin.Engine {
+	r := SetupRouter()
 	r.Run()
+
+	return r
 }
