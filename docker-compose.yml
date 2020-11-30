@@ -27,15 +27,19 @@ services:
       - ./docker/database/postgres/scripts:/docker-entrypoint-initdb.d
     tty: true
     restart: always
+    healthcheck:
+      #IMPORTANT! change this if you have changed a local.env
+      test: ["CMD-SHELL", "pg_isready -U labbankgo-usr -d labbankgo-db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   labbankgo-adminer-service:
     container_name: labbankgo-adminer
     image: adminer
     restart: always
     ports:
       - 8086:8080
-    environment:
-      ADMINER_DESIGN: "nette"
-      ADMINER_DEFAULT_SERVER: "${DB_HOST}"
+    env_file: ./docker/local.env
     links:
       - labbankgo-db-service
     depends_on:

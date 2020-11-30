@@ -45,8 +45,8 @@ docker-compose up --build
 ```
 
 > Open on you best browser: http://localhost:8085 <br />
+> GraphQL Playground: http://localhost:8085/gaphiql
 > To see a database open adminer on: http://localhost:8086
-> Open GraphiQL on: http://localhost:8085/gaphiql
 > Configurations for connect on database see: [/docker/local.env](/docker/local.env)
 > IMPORTANT! If you not have a docker see: [Get Started - without docker](#Get-Stared-without-docker)
 
@@ -195,10 +195,15 @@ go run main.go
 - [GORM (ORM)](https://gorm.io/docs/index.html)
 - [Gqlgen (GraphQL)](https://gqlgen.com)
 - [PostgreSQL (SGBD)](https://www.postgresql.org/docs/online-resources/)
-- [JsonAPI (Restful API Specification)](https://jsonapi.org)
-- [GOlang Style Guide by Google](https://github.com/golang/go/wiki/CodeReviewComments)
+- [Docker Compose (Local Environment)](https://docs.docker.com/compose/compose-file/)
 
 ## References
 
-- [Google Style Guide](https://google.github.io/styleguide/)
+- [Effective GO](https://golang.org/doc/effective_go.html)
+- [JsonAPI (Restful API Specification)](https://jsonapi.org)
+- [Style Guide - GOlang Code Review](https://github.com/golang/go/wiki/CodeReviewComments)
+- [Style Guide - Google](https://google.github.io/styleguide/)
+- [Style Guide - Uber GO](https://github.com/uber-go/guide/blob/master/style.md/)
+- [Style Guide - Source Graph](https://about.sourcegraph.com/handbook/engineering/languages/go/)
 - [How to GraphQL with GO](https://www.howtographql.com/graphql-go/0-introduction/)
+- [Examples with GO](https://gobyexample.com/)
