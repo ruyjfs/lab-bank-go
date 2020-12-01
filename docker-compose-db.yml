@@ -1,27 +1,9 @@
 version: "3.5"
 services: 
-  labbankgo-api-service:
-    container_name: "labbankgo-api"
-    image: "ruyjfs/go"
-    build: docker/.
-    working_dir: /app
-    volumes:
-      - .:/app
-    env_file: ./docker/docker.env
-    entrypoint: ["sh", "./docker/entrypoint.sh"]
-    command: sh -c 'gin --port=8080'
-    ports:
-      - "8085:8080"
-    restart: always
-    tty: true
-    links:
-      - labbankgo-db-service
-    depends_on:
-      - labbankgo-db-service
   labbankgo-db-service:
-    container_name: labbankgo-db
+    container_name: labbankgo-db-only
     image: postgres:alpine
-    env_file: ./docker/docker.env
+    env_file: ./docker/local.env
     volumes:
       - ./docker/database/postgres/data:/var/lib/postgresql/data
       - ./docker/database/postgres/scripts:/docker-entrypoint-initdb.d
@@ -36,12 +18,12 @@ services:
       timeout: 5s
       retries: 5
   labbankgo-adminer-service:
-    container_name: labbankgo-adminer
+    container_name: labbankgo-adminer-only
     image: adminer
     restart: always
     ports:
       - 8086:8080
-    env_file: ./docker/docker.env
+    env_file: ./docker/local.env
     links:
       - labbankgo-db-service
     depends_on:

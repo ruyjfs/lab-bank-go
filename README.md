@@ -6,6 +6,7 @@ A example of bank transaction, made with GOlang, Gin Framework, Restful and Grap
 - [Insomnia](#Insomnia)
 - [Get Started](#Get-Started)
 - [Get Started - without docker](##Get-Stared-without-docker)
+- [Run Debug with VScode and DB in docker](##Run-Debugg)
 - [Unity Test and Test Integration](##Unity-Test-and-Test-Integration)
 - [Step By Step](#Step-By-Step)
 - [Commands](#Commands)
@@ -104,6 +105,14 @@ gqlgen generate
 
 ```bash
 gin --port=8080 #or ~/go/bin/gin --port=8080
+```
+
+## Run Debugg
+
+> With VScode and SGBD on Docker
+
+```bash
+docker-compose -f docker-compose-db.yml up
 ```
 
 ## Unity Test and Test Integration
